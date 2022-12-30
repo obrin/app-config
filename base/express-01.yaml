@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: express-01
+  labels:
+    toolkit.fluxcd.io/tenant: dev-team
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-01
+  namespace: express-01
+spec:
+  selector:
+    matchLabels:
+      app: express-01
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: express-01
+    spec:
+      containers:
+      - name: express-01
+        image: jordanyong/express-01:main-21febf120e35fd838b29e93624a4f878ced1fa15-5 # {"$imagepolicy": "express-01:express-01"}
+        ports:
+        - containerPort: 80
+---
+
+# Tell Flux which container registry to scan for new tags
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: express-01
+  namespace: express-01
+spec:
+  image: jordanyong/express-01
+  interval: 1m0s
+
+---
+
+# Tell Flux which semver range to use when filtering tags
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: express-01
+  namespace: express-01
+spec:
+  imageRepositoryRef:
+    name: express-01
+  filterTags:
+    pattern: '^main-[a-fA-F0-9]+-([1-9][0-9]*)'
+  policy:
+    numerical:
+      order: asc
