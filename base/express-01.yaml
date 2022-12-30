@@ -51,8 +51,8 @@ spec:
   imageRepositoryRef:
     name: express-01
   filterTags:
-    # pattern: '^main-[a-fA-F0-9]+-([1-9][0-9]*)'
-    pattern: '^main-(.*)'
+    pattern: '^main-[a-f0-9]+-(?P<ts>[0-9]+)'
+    extract: '$ts'
   policy:
     numerical:
       order: asc
