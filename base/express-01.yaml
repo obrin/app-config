@@ -4,9 +4,7 @@ metadata:
   name: express-01
   labels:
     toolkit.fluxcd.io/tenant: dev-team
-
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,11 +22,10 @@ spec:
     spec:
       containers:
       - name: express-01
-        image: jordanyong/express-01:main-21febf120e35fd838b29e93624a4f878ced1fa15-5 # {"$imagepolicy": "flux-system:express-01"}
+        image: jordanyong/express-01:main-0d3f1390a9df4943f4fd8421a616e5be81653c05-7 # {"$imagepolicy": "flux-system:express-01"}
         ports:
         - containerPort: 80
 ---
-
 # Tell Flux which container registry to scan for new tags
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
@@ -38,9 +35,7 @@ metadata:
 spec:
   image: jordanyong/express-01
   interval: 1m0s
-
 ---
-
 # Tell Flux which semver range to use when filtering tags
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
