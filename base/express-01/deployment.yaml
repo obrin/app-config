@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: express-01
+  namespace: express-01
 spec:
   selector:
     matchLabels:
