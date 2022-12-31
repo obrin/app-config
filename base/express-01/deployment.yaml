@@ -17,11 +17,11 @@ spec:
       - name: express-01
         image: jordanyong/express-01:main-ed4920ce11fb300cad84b27ae43d81772f55fff4-8 # {"$imagepolicy": "flux-system:express-01"}
         ports:
-        - containerPort: 80
+        - containerPort: 5000
         resources:
           limits:
             memory: "1000Mi"
-            cpu: "0.6"
+            cpu: "1"
           requests:
             memory: "500Mi"
-            cpu: "0.3"
+            cpu: "0.5"
