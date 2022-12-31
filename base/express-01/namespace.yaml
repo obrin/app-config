@@ -1,6 +1,6 @@
 ---
 apiversion: v1
-kind: namespace
+kind: Namespace
 metadata:
   name: express-01
   labels:
