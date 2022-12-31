@@ -1,0 +1,7 @@
+---
+apiversion: v1
+kind: namespace
+metadata:
+  name: express-01
+  labels:
+    toolkit.fluxcd.io/tenant: dev-team
