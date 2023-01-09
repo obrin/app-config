@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-echo
+  namespace: rust-echo
+spec:
+  selector:
+    matchLabels:
+      app: rust-echo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rust-echo
+    spec:
+      containers:
+      - name: rust-echo
+        image: jordanyong/rust-echo:main-e39d91a96a4df593433a87eb8b8b77ca31ad24fd-1 # {"$imagepolicy": "flux-system:rust-echo"}
+        ports:
+        - containerPort: 3030
+        resources:
+          limits:
+            memory: "200Mi"
+            cpu: "0.2"
+          requests:
+            memory: "10Mi"
+            cpu: "0.1"
